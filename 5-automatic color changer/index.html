@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto color generator and changer</title>
+</head>
+<body style="background-color: black; color: wheat;">
+    <div class="box">
+        <h1>Please start or stop the colors</h1>
+
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+
+    <script>
+        const start = document.getElementById("start")
+        const stop = document.getElementById("stop")
+        const body = document.querySelector("body")
+
+        let startInterval;
+
+        function colorGenerator(){
+            const colorCodeRange = "0123456789ABCDEF"
+            let hexCode = "#"
+            for(let i = 0; i<6; i++){
+                hexCode+=colorCodeRange[Math.floor(Math.random()*16)]
+            }
+
+            return hexCode
+        }
+
+        start.addEventListener('click',function(){
+            startInterval = setInterval(function(){
+                body.style.backgroundColor = colorGenerator()
+                console.log(colorGenerator())
+            },1000)
+        })
+
+        stop.addEventListener('click',function(){
+            clearInterval(startInterval)
+        })
+        
+        
+    </script>
+    
+</body>
+</html>
